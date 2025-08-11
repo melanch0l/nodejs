@@ -1,19 +1,7 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-//this is sync read only read once temp=key, product=value in json.parse(data) array 
-const replacetemplate = (temp, product) => {
-    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-    output = output.replace(/{%IMAGE%}/g, product.image);
-    output = output.replace(/{%FROM%}/g, product.from);
-    output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-    output = output.replace(/{%QUANTITY%}/g, product.quantity);
-    output = output.replace(/{%PRICE%}/g, product.price);
-    output = output.replace(/{%ID%}/g, product.id);
-    output = output.replace(/{%DESCRIPTION%}/g, product.description);
-    if (!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
-    return output;
-}
+const replacetemplate = require('./modules.js/replacetemplate') //no need include .js
 const overview = fs.readFileSync('./templates/overview.html', 'utf-8');
 const productemp = fs.readFileSync('./templates/product.html', 'utf-8');
 const template = fs.readFileSync('./templates/template-card.html', 'utf-8');
