@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, { 'Content-type': 'text/html' });
         const product = dataobj[query.id];
         const output = replacetemplate(productemp, product);
-        console.log(output);
         res.end(output);
     }
 
